@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TaskFlow</title>
+
+  <link rel="stylesheet" href="vibe.css">
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+      <div class="logo">
+        <h2>TaskFlow</h2>
+      </div>
+
+      <nav class="menu">
+
+        <a href="#" class="menu-item active" id="dashboard-link">
+          Dashboard
+        </a>
+
+        <a href="#" class="menu-item" id="tasks-link">
+          My Tasks
+        </a>
+
+        <a href="#" class="menu-item" id="calendar-link">
+          Calendar
+        </a>
+
+        <a href="#" class="menu-item" id="statistics-link">
+          Statistics
+        </a>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+
+        <a href="#" class="menu-item" id="settings-link">
+          Settings
+        </a>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+
+      <!-- =========================
+           DASHBOARD PAGE
+      ========================== -->
+
+      <div class="page active-page" id="dashboard-page">
+
+        <div class="dashboard-header">
+
+          <div>
+            <h1>Dashboard</h1>
+            <p>Welcome back! Let's get things done.</p>
+          </div>
+
+          <button class="add-task-btn dashboard-add-btn">
+            + Add Task
+          </button>
+
+        </div>
+
+
+        <!-- Dashboard statistics -->
+
+        <div class="stats">
+
+          <div class="stat-card">
+
+            <p>Total Tasks</p>
+
+            <h2 id="total-tasks">
+              0
+            </h2>
+
+            <span>
+              All your tasks
+            </span>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <p>In Progress</p>
+
+            <h2 id="in-progress">
+              0
+            </h2>
+
+            <span>
+              Currently active
+            </span>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <p>Completed</p>
+
+            <h2 id="completed-tasks">
+              0
+            </h2>
+
+            <span>
+              Great work!
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Today's Tasks -->
+
+        <section class="tasks-section">
+
+          <div class="tasks-header">
+
+            <div>
+
+              <h2>
+                Today's Tasks
+              </h2>
+
+              <p>
+                Keep track of what you need to get done.
+              </p>
+
+            </div>
+
+            <a href="#" class="view-all" id="view-all-tasks">
+              View all
+            </a>
+
+          </div>
+
+
+          <!-- JS додає задачі сюди -->
+
+          <div class="task-list">
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- =========================
+           MY TASKS PAGE
+      ========================== -->
+
+      <div class="page" id="tasks-page">
+
+        <div class="dashboard-header">
+
+          <div>
+
+            <h1>
+              My Tasks
+            </h1>
+
+            <p>
+              Manage and organize all your tasks.
+            </p>
+
+          </div>
+
+          <button class="add-task-btn tasks-add-btn">
+            + Add Task
+          </button>
+
+        </div>
+
+
+        <!-- Search + Filters -->
+
+        <div class="tasks-toolbar">
+
+          <input type="text" id="task-search" placeholder="Search tasks...">
+
+          <div class="task-filters">
+
+            <button class="filter-btn active-filter" data-filter="all">
+              All
+            </button>
+
+            <button class="filter-btn" data-filter="active">
+              Active
+            </button>
+
+            <button class="filter-btn" data-filter="completed">
+              Completed
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- All Tasks -->
+
+        <div class="all-tasks-container">
+
+          <h2>
+            All Tasks
+          </h2>
+
+          <div id="all-tasks-list">
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           CALENDAR PAGE
+      ========================== -->
+
+      <div class="page" id="calendar-page">
+
+        <div class="calendar-header">
+
+          <div>
+
+            <h1>
+              Calendar
+            </h1>
+
+            <p>
+              Plan your tasks and deadlines.
+            </p>
+
+          </div>
+
+          <button class="add-task-btn calendar-add-btn">
+            + Add Task
+          </button>
+
+        </div>
+
+
+        <div class="calendar-container">
+
+
+          <!-- Month Navigation -->
+
+          <div class="calendar-navigation">
+
+            <button id="prev-month" class="calendar-nav-btn">
+              ←
+            </button>
+
+
+            <h2 id="calendar-month">
+              October 2026
+            </h2>
+
+
+            <button id="next-month" class="calendar-nav-btn">
+              →
+            </button>
+
+          </div>
+
+
+          <!-- Weekdays -->
+
+          <div class="calendar-weekdays">
+
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+            <div>Sun</div>
+
+          </div>
+
+
+          <!-- Calendar Days -->
+
+          <div class="calendar-grid" id="calendar-grid">
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           STATISTICS PAGE
+      ========================== -->
+
+      <div class="page" id="statistics-page">
+
+        <div class="statistics-header">
+
+          <div>
+
+            <h1>
+              Statistics
+            </h1>
+
+            <p>
+              Track your productivity and task progress.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Main Statistics Cards -->
+
+        <div class="statistics-cards">
+
+
+          <div class="statistics-card">
+
+            <p>
+              Total Tasks
+            </p>
+
+            <h2 id="stats-total">
+              0
+            </h2>
+
+            <span>
+              All created tasks
+            </span>
+
+          </div>
+
+
+          <div class="statistics-card">
+
+            <p>
+              Completed
+            </p>
+
+            <h2 id="stats-completed">
+              0
+            </h2>
+
+            <span>
+              Finished tasks
+            </span>
+
+          </div>
+
+
+          <div class="statistics-card">
+
+            <p>
+              In Progress
+            </p>
+
+            <h2 id="stats-active">
+              0
+            </h2>
+
+            <span>
+              Tasks remaining
+            </span>
+
+          </div>
+
+
+          <div class="statistics-card">
+
+            <p>
+              Completion Rate
+            </p>
+
+            <h2 id="stats-rate">
+              0%
+            </h2>
+
+            <span>
+              Your productivity
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Statistics Details -->
+
+        <div class="statistics-details">
+
+
+          <!-- Completion Progress -->
+
+          <div class="statistics-panel">
+
+            <h2>
+              Completion Progress
+            </h2>
+
+            <p>
+              Overall progress of your tasks.
+            </p>
+
+
+            <div class="progress-info">
+
+              <span>
+                Tasks completed
+              </span>
+
+              <span id="progress-percent">
+                0%
+              </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+              <div class="progress-fill" id="progress-fill">
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Priority Breakdown -->
+
+          <div class="statistics-panel">
+
+            <h2>
+              Priority Breakdown
+            </h2>
+
+            <p>
+              Tasks grouped by priority.
+            </p>
+
+
+            <div class="priority-stat">
+
+              <span class="priority high">
+                High
+              </span>
+
+              <strong id="priority-high">
+                0
+              </strong>
+
+            </div>
+
+
+            <div class="priority-stat">
+
+              <span class="priority medium">
+                Medium
+              </span>
+
+              <strong id="priority-medium">
+                0
+              </strong>
+
+            </div>
+
+
+            <div class="priority-stat">
+
+              <span class="priority low">
+                Low
+              </span>
+
+              <strong id="priority-low">
+                0
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           SETTINGS PAGE
+      ========================== -->
+
+      <div class="page" id="settings-page">
+
+        <div class="settings-header">
+
+          <h1>
+            Settings
+          </h1>
+
+          <p>
+            Customize your TaskFlow experience.
+          </p>
+
+        </div>
+
+
+        <div class="settings-container">
+
+          <div class="setting-item">
+
+            <div>
+
+              <h3>
+                Dark Mode
+              </h3>
+
+              <p>
+                Switch between light and dark appearance.
+              </p>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input type="checkbox" id="dark-mode-toggle">
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </main>
+
+  </div>
+
+
+  <!-- =========================
+       ADD / EDIT TASK MODAL
+  ========================== -->
+
+  <div class="modal" id="task-modal">
+
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+
+        <div>
+
+          <h2>
+            Create New Task
+          </h2>
+
+          <p>
+            Add a new task to your list.
+          </p>
+
+        </div>
+
+
+        <button class="close-modal" id="close-modal">
+          &times;
+        </button>
+
+      </div>
+
+
+      <form id="task-form">
+
+
+        <!-- Task Name -->
+
+        <div class="form-group">
+
+          <label for="task-title">
+            Task name
+          </label>
+
+          <input type="text" id="task-title" placeholder="Enter task name..." required>
+
+        </div>
+
+
+        <!-- Category -->
+
+        <div class="form-group">
+
+          <label for="task-category">
+            Category
+          </label>
+
+          <input type="text" id="task-category" placeholder="For example: University" required>
+
+        </div>
+
+
+        <!-- Date -->
+
+        <div class="form-group">
+
+          <label for="task-date">
+            Due date
+          </label>
+
+          <input type="date" id="task-date" required>
+
+        </div>
+
+
+        <!-- Priority -->
+
+        <div class="form-group">
+
+          <label for="task-priority">
+            Priority
+          </label>
+
+          <select id="task-priority">
+
+            <option value="low">
+              Low
+            </option>
+
+            <option value="medium">
+              Medium
+            </option>
+
+            <option value="high">
+              High
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <button type="submit" class="create-task-btn">
+          Create Task
+        </button>
+
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <script src="vibe.js"></script>
+
+</body>
+
+</html>
